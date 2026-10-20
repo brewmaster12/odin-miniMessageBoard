@@ -3,15 +3,16 @@ const app = express()
 
 const indexRouter = require("./routes/indexRouter.js")
 const newMessageRouter = require("./routes/newMessageRouter.js")
+const path = require("node:path");
 
-app.use("/new", newMessageRouter)
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
 app.use("/", indexRouter)
+app.use("/new", newMessageRouter)
 
-
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(err.statusCode || 500).send(err.message);
-});
+const assetsPath = path.join(__dirname, "public");
+app.use(express.static(assetsPath));
 
 const PORT = 3000;
 app.listen(PORT, (error) => {
