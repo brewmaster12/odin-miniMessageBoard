@@ -3,6 +3,7 @@ const app = express()
 
 const indexRouter = require("./routes/indexRouter.js")
 const newMessageRouter = require("./routes/newMessageRouter.js")
+const messageDetailsRouter = require("./routes/messageDetailsRouter.js")
 const path = require("node:path");
 
 app.set("views", path.join(__dirname, "views"));
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/", indexRouter)
 app.use("/new", newMessageRouter)
+app.use("/details", messageDetailsRouter)
 
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));

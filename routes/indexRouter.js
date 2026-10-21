@@ -1,18 +1,7 @@
 const { Router } = require("express")
 const indexRouter = Router()
-
-const messages = [
-  {
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date()
-  },
-  {
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date()
-  }
-];
+const db = require("../db.js")
+const messages = db.messages;
 
 indexRouter.get("/", (req, res) => {
   res.render("index", { title: "Mini Messageboard", messages: messages })
